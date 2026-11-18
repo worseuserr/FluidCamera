@@ -21,3 +21,7 @@ target_link_directories(FluidCamera PRIVATE
 target_link_libraries(FluidCamera PRIVATE
 		ScriptHookV.lib
 )
+
+target_compile_options(FluidCamera PRIVATE
+		/EHsc
+)

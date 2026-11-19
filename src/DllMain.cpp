@@ -1,11 +1,12 @@
+#include "FluidCameraRuntime.h"
 #include "Core/Runtime.h"
 #include "ScriptHookV/inc/main.h"
 
 using namespace FluidCamera;
 
-void FluidCameraMain()
+static void FluidCameraMain()
 {
-	Runtime	rt;
+	FluidCameraRuntime	rt;
 
 	while (rt.IsActive())
 	{

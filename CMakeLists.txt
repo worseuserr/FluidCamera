@@ -7,6 +7,9 @@ set(SDK_PATH "external/ScriptHookV")
 add_library(FluidCamera
 		src/DllMain.cpp
 		src/Core/Runtime.cpp
+		src/Core/Feature.cpp
+		src/Features/SmoothCameraFeature.cpp
+		src/FluidCameraRuntime.cpp
 )
 
 target_include_directories(FluidCamera PRIVATE

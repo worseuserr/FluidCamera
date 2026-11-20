@@ -9,6 +9,11 @@ Runtime::Runtime()
 	Active = true;
 }
 
+// Runtime::Runtime(FluidCamera::Logger &logger) : Runtime()
+// {
+// 	Logger = &logger;
+// }
+
 bool Runtime::Tick()
 {
 	const float	currTime = GetEpochTimeSeconds();
@@ -71,6 +76,16 @@ void Runtime::Revive()
 	ExitRequested = false;
 	Active = true;
 	LastMeasuredTimeSeconds = GetEpochTimeSeconds();
+}
+
+void Runtime::SetLogger(FluidCamera::Logger &logger)
+{
+	Logger = &logger;
+}
+
+void Runtime::SetLogger(FluidCamera::Logger *logger)
+{
+	Logger = logger;
 }
 
 Logger *Runtime::GetLogger() const

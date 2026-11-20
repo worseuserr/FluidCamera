@@ -3,12 +3,14 @@
 #include <unordered_map>
 #include "Core/Feature.h"
 #include "Core/Vec3.h"
+#include "ScriptHookV/inc/types.h"
 
 namespace FluidCamera
 {
 	class	CameraControllerFeature : public Feature
 	{
 	protected:
+		Cam		Camera = 0;
 		void	SetGTACameraRelativeTransform(const Vec3 &pos, const Vec3 &rot) const;
 
 	public:
@@ -17,6 +19,6 @@ namespace FluidCamera
 
 		const char	*GetName() const override;
 		void		Start() override;
-		void		Tick(float dTime) override;
+		void		Tick(float deltaTime) override;
 	};
 }

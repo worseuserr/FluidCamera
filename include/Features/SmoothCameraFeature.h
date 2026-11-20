@@ -12,6 +12,6 @@ namespace FluidCamera
 
 		const char	*GetName() const override;
 		void		Start() override;
-		void		Tick(float dTime) override;
+		void		Tick(float deltaTime) override;
 	};
 }

@@ -32,6 +32,7 @@ namespace FluidCamera
 
 	public:
 		Runtime();
+		// explicit			Runtime(FluidCamera::Logger &logger);
 		virtual				~Runtime() = default;
 		// Returns true and does nothing internally if ExitRequested is true. First tick runs Feature.Start() instead of Feature.Tick().
 		virtual bool		Tick();
@@ -42,6 +43,8 @@ namespace FluidCamera
 		const std::string	*GetExitReason() const;
 		// Restart after exit, assuming error handling was done and the loop can continue.
 		void				Revive();
+		void				SetLogger(FluidCamera::Logger &logger);
+		void				SetLogger(FluidCamera::Logger *logger);
 		FluidCamera::Logger	*GetLogger() const;
 		static float		GetEpochTimeSeconds();
 	};

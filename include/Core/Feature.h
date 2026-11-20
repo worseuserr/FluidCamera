@@ -13,7 +13,7 @@ namespace FluidCamera
 		virtual				~Feature() = default;
 		virtual const char	*GetName() const = 0;
 		virtual void		Start() {}
-		virtual void		Tick(const float dTime) {}
+		virtual void		Tick(const float deltaTime) {}
 		Logger				*GetLogger() const;
 		Runtime				*GetRuntime() const
 		{

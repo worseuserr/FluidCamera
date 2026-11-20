@@ -14,7 +14,13 @@ static void FluidCameraMain()
 		WAIT(0);
 	}
 	// Do proper error logging in future.
-	throw std::exception(rt.GetExitReason()->c_str());
+	MessageBoxA(
+		nullptr,
+		rt.GetExitReason()->c_str(),
+		"Error",
+		MB_OK | MB_ICONERROR
+	);
+	// throw std::exception(rt.GetExitReason()->c_str());
 }
 
 BOOL APIENTRY DllMain(const HMODULE hInstance, const DWORD reason, LPVOID lpReserved)

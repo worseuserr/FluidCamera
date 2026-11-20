@@ -12,6 +12,8 @@ add_library(FluidCamera SHARED
 		src/FluidCameraRuntime.cpp
 		src/Features/CameraControllerFeature.cpp
 		src/Core/Vec3.cpp
+		src/IO/Logger.cpp
+		src/IO/File.cpp
 )
 
 target_include_directories(FluidCamera PRIVATE

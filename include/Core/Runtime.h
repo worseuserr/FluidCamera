@@ -9,6 +9,8 @@ namespace FluidCamera
 	// Basically a small entity (runtime) component (feature) system.
 	class	Runtime
 	{
+		float	LastMeasuredTimeSeconds;
+
 	protected:
 		std::vector<std::unique_ptr<Feature>>	Features;
 		bool		HasStartedFeatures = false;
@@ -39,5 +41,6 @@ namespace FluidCamera
 		const std::string	*GetExitReason() const;
 		// Restart after exit, assuming error handling was done and the loop can continue.
 		void				Revive();
+		static float		GetEpochTimeSeconds();
 	};
 }

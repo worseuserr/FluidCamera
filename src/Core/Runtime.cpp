@@ -1,16 +1,38 @@
 #include "Core/Runtime.h"
+#include <chrono>
 
 using namespace FluidCamera;
 
 Runtime::Runtime()
 {
+	LastMeasuredTimeSeconds = GetEpochTimeSeconds();
 	Active = true;
 }
 
 bool Runtime::Tick()
 {
-	// Actual tick logic comes here soon.
-	if (ExitRequested)
+	const float	currTime = GetEpochTimeSeconds();
+	const float	deltaTime = currTime - LastMeasuredTimeSeconds;
+
+	LastMeasuredTimeSeconds = currTime;
+	for (const std::unique_ptr<Feature> &feat : Features)
+	{
+		try
+		{
+			if (HasStartedFeatures)
+				feat->Tick(deltaTime);
+			else
+				feat->Start();
+		}
+		catch (std::exception e)
+		{
+			RequestExit(std::format("Exception caught in [{}], what: [{}]", feat->GetName(), e.what()));
+			break ;
+		}
+	}
+	if (!HasStartedFeatures)
+		HasStartedFeatures = true;
+	if (ExitRequested || !Active)
 	{
 		if (Active)
 			Active = false;
@@ -45,4 +67,10 @@ void Runtime::Revive()
 {
 	ExitRequested = false;
 	Active = true;
+	LastMeasuredTimeSeconds = GetEpochTimeSeconds();
+}
+
+float Runtime::GetEpochTimeSeconds()
+{
+	return (std::chrono::duration_cast<std::chrono::duration<float>>(std::chrono::steady_clock::now().time_since_epoch()).count());
 }

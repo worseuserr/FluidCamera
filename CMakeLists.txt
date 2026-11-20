@@ -10,6 +10,8 @@ add_library(FluidCamera
 		src/Core/Feature.cpp
 		src/Features/SmoothCameraFeature.cpp
 		src/FluidCameraRuntime.cpp
+		src/Features/CameraControllerFeature.cpp
+		src/Core/Vec3.cpp
 )
 
 target_include_directories(FluidCamera PRIVATE

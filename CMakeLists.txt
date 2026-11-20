@@ -4,7 +4,7 @@ project(FluidCamera)
 set(CMAKE_CXX_STANDARD 20)
 set(SDK_PATH "external/ScriptHookV")
 
-add_library(FluidCamera
+add_library(FluidCamera SHARED
 		src/DllMain.cpp
 		src/Core/Runtime.cpp
 		src/Core/Feature.cpp
@@ -29,4 +29,8 @@ target_link_libraries(FluidCamera PRIVATE
 
 target_compile_options(FluidCamera PRIVATE
 		/EHsc
+)
+
+set_target_properties(FluidCamera PROPERTIES
+	SUFFIX ".asi"
 )

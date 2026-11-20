@@ -4,11 +4,46 @@
 
 using namespace FluidCamera;
 
+Vec3::Vec3(const Vector3 &nativeVector3)
+{
+	X = nativeVector3.x;
+	Y = nativeVector3.y;
+	Z = nativeVector3.z;
+}
+
 Vec3::Vec3(const float x, const float y, const float z)
 {
 	X = x;
 	Y = y;
 	Z = z;
+}
+
+
+Vec3 Vec3::FromGTARot(const Vec3 &nativeRot)
+{
+	return (Vec3(
+		-nativeRot.Z,
+		nativeRot.X,
+		nativeRot.Y
+	));
+}
+
+Vec3 Vec3::FromGTARot(const Vector3 &nativeRot)
+{
+	return (Vec3(
+		-nativeRot.z,
+		nativeRot.x,
+		nativeRot.y
+	));
+}
+
+Vec3 Vec3::ToGTARot() const
+{
+	return (Vec3(
+		Y,
+		Z,
+		-X
+	));
 }
 
 Vec3 Vec3::Lerp(const Vec3 &dest, const float t) const
@@ -80,11 +115,12 @@ Vec3 &Vec3::Normalize()
 	return (*this);
 }
 
+// Normalizes as -180~180
 Vec3 &Vec3::NormalizeRotation()
 {
-	X -= 360.f * std::floor(X / 360.f);
-	Y -= 360.f * std::floor(Y / 360.f);
-	Z -= 360.f * std::floor(Z / 360.f);
+	X -= 360.f * std::floor((X + 180.f) / 360.f);
+	Y -= 360.f * std::floor((Y + 180.f) / 360.f);
+	Z -= 360.f * std::floor((Z + 180.f) / 360.f);
 	return (*this);
 }
 
@@ -94,14 +130,14 @@ Vec3 &Vec3::Rotate(const Vec3 &amountDegrees)
 	return (this->NormalizeRotation());
 }
 
-Vec3 &Vec3::Rotate(const float rollDegrees, const float pitchDegrees, const float yawDegrees)
+Vec3 &Vec3::Rotate(const float yawDegrees, const float pitchDegrees, const float rollDegrees)
 {
-	return (Rotate(Vec3(rollDegrees, pitchDegrees, yawDegrees)));
+	return (Rotate(Vec3(yawDegrees, pitchDegrees, rollDegrees)));
 }
 
 Vec3 &Vec3::RotateRoll(const float amount)
 {
-	return (Rotate(amount));
+	return (Rotate(0, 0, amount));
 }
 
 Vec3 &Vec3::RotatePitch(const float amount)
@@ -111,7 +147,7 @@ Vec3 &Vec3::RotatePitch(const float amount)
 
 Vec3 &Vec3::RotateYaw(const float amount)
 {
-	return (Rotate(0, 0, amount));
+	return (Rotate(amount));
 }
 
 bool Vec3::operator==(const Vec3 &other) const

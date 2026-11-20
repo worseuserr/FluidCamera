@@ -1,8 +1,9 @@
 #pragma once
+#include "ScriptHookV/inc/types.h"
 
 namespace FluidCamera
 {
-	// Expanded version of my other project's Vec2 (RedUI), with extra methods.
+	// Expanded version of my other project's Vec2 (RedUI), with extra methods. Y-up, rotations in Yaw, Pitch, Roll.
 	class	Vec3
 	{
 	public:
@@ -10,7 +11,11 @@ namespace FluidCamera
 		float	Y;
 		float	Z;
 
+		explicit	Vec3(const Vector3 &nativeVector3);
 		explicit	Vec3(float x = 0, float y = 0, float z = 0);
+		static Vec3	FromGTARot(const Vec3 &nativeRot);
+		static Vec3	FromGTARot(const Vector3 &nativeRot);
+		Vec3		ToGTARot() const;
 		Vec3		Lerp(const Vec3 &dest, float t) const;
 		float		Magnitude() const;
 		// Magnitude squared. Prefer.
@@ -23,9 +28,9 @@ namespace FluidCamera
 		Vec3		Cross(const Vec3 &target) const;
 		Vec3		&Normalize();
 		Vec3		&NormalizeRotation();
-		// X: Roll, Y: Pitch, Z: Yaw
+		// X: Yaw, Y: Pitch, Z: Roll
 		Vec3		&Rotate(const Vec3 &amountDegrees);
-		Vec3		&Rotate(float rollDegrees, float pitchDegrees = 0, float yawDegrees = 0);
+		Vec3		&Rotate(float yawDegrees, float pitchDegrees = 0, float rollDegrees = 0);
 		Vec3		&RotateRoll(float amount);
 		Vec3		&RotatePitch(float amount);
 		Vec3		&RotateYaw(float amount);

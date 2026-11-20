@@ -12,6 +12,7 @@ _deps
 CMakeUserPresets.json
 
 .idea
+run.bat
 # Ignore script hook since its explicitly DO NOT DISTRIBUTE.
 external/ScriptHookV
 

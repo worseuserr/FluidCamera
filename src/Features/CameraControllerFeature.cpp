@@ -1,10 +1,12 @@
 #include "Features/CameraControllerFeature.h"
+#include "ScriptHookV/inc/natives.h"
 
 using namespace FluidCamera;
 
 void CameraControllerFeature::SetGTACameraRelativeTransform(const Vec3 &pos, const Vec3 &rot) const
 {
-	// todo
+	CAM::SET_GAMEPLAY_CAM_RELATIVE_HEADING(pos.Z);
+	CAM::SET_GAMEPLAY_CAM_RELATIVE_PITCH(pos.Y, 1.f);
 }
 
 const char *CameraControllerFeature::GetName() const

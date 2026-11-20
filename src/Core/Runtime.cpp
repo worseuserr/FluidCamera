@@ -26,7 +26,10 @@ bool Runtime::Tick()
 		}
 		catch (std::exception e)
 		{
-			RequestExit(std::format("Exception caught in [{}], what: [{}]", feat->GetName(), e.what()));
+			RequestExit(
+				std::format("Exception caught in [{}] function {}, what: [{}]",
+					feat->GetName(), HasStartedFeatures ? "Start()" : "Tick()",
+					e.what()));
 			break ;
 		}
 	}

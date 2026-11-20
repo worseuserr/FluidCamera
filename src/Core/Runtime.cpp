@@ -73,6 +73,11 @@ void Runtime::Revive()
 	LastMeasuredTimeSeconds = GetEpochTimeSeconds();
 }
 
+Logger *Runtime::GetLogger() const
+{
+	return (Logger);
+}
+
 float Runtime::GetEpochTimeSeconds()
 {
 	return (std::chrono::duration_cast<std::chrono::duration<float>>(std::chrono::steady_clock::now().time_since_epoch()).count());

@@ -10,6 +10,7 @@ namespace FluidCamera
 	class	Runtime
 	{
 		float	LastMeasuredTimeSeconds;
+		Logger	*Logger = nullptr;
 
 	protected:
 		std::vector<std::unique_ptr<Feature>>	Features;
@@ -41,6 +42,7 @@ namespace FluidCamera
 		const std::string	*GetExitReason() const;
 		// Restart after exit, assuming error handling was done and the loop can continue.
 		void				Revive();
+		FluidCamera::Logger	*GetLogger() const;
 		static float		GetEpochTimeSeconds();
 	};
 }

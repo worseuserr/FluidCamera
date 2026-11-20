@@ -1,4 +1,5 @@
 #pragma once
+#include "IO/Logger.h"
 
 namespace FluidCamera
 {
@@ -13,6 +14,7 @@ namespace FluidCamera
 		virtual const char	*GetName() const = 0;
 		virtual void		Start() {}
 		virtual void		Tick(const float dTime) {}
+		Logger				*GetLogger() const;
 		Runtime				*GetRuntime() const
 		{
 			return (RT);

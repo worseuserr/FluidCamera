@@ -1,3 +1,7 @@
-#include  "Core/Feature.h"
+#include "Core/Feature.h"
+#include "Core/Runtime.h"
 
-// Currently unused.
+FluidCamera::Logger *FluidCamera::Feature::GetLogger() const
+{
+	return (RT->GetLogger());
+}

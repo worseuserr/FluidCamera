@@ -70,6 +70,8 @@ Vec3 Vec3::Cross(const Vec3 &target) const
 
 Vec3 &Vec3::Normalize()
 {
+	if (IsZero())
+		return(*this);
 	const float	magnitude = Magnitude();
 
 	X *= magnitude;

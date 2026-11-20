@@ -6,8 +6,11 @@ using namespace FluidCamera;
 
 static void FluidCameraMain()
 {
-	FluidCameraRuntime	rt;
+	Logger				logger = Logger("FluidCamera.log", "FluidCamera");
+	FluidCameraRuntime	rt = FluidCameraRuntime();
 
+	logger.UseBuffer = true;
+	rt.SetLogger(logger);
 	while (rt.IsActive())
 	{
 		rt.Tick();

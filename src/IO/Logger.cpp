@@ -43,6 +43,21 @@ void Logger::Write(const std::string &str, const LL logLevel, const bool prepend
 	Write(str.c_str(), logLevel, prependDatetime, appendNewline);
 }
 
+void Logger::Info(const std::string &str, const bool prependDatetime, const bool appendNewline)
+{
+	Write(str, LL::Info, prependDatetime, appendNewline);
+}
+
+void Logger::Warn(const std::string &str, const bool prependDatetime, const bool appendNewline)
+{
+	Write(str, LL::Warn, prependDatetime, appendNewline);
+}
+
+void Logger::Debug(const std::string &str, const bool prependDatetime, const bool appendNewline)
+{
+	Write(str, LL::Debug, prependDatetime, appendNewline);
+}
+
 void Logger::Error(const std::string &message)
 {
 	Write(message, LL::Error);

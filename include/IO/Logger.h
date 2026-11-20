@@ -10,7 +10,7 @@ namespace FluidCamera
 		Info,
 		Warn,
 		Error,
-		Debug
+		Debug,
 	};
 
 	constexpr const char	*LogLevelStrings[] =
@@ -18,7 +18,7 @@ namespace FluidCamera
 		"[INFO ] ",
 		"[WARN ] ",
 		"[ERROR] ",
-		"[DEBUG] "
+		"[DEBUG] ",
 	};
 
 	// Shorthand for LogLevel to make Write calls more concise.
@@ -37,10 +37,14 @@ namespace FluidCamera
 		bool			UseBuffer = false;
 		unsigned int	BufferSize = 2048; // Size in characters.
 
+		// Filename should include extension (usually .log).
 		Logger(const char *filename, const char *modname, bool overwriteIfExists = true);
 		~Logger();
 		void	Write(const char *str, LL logLevel = LL::Info, bool prependDatetime = true, bool appendNewline = true);
 		void	Write(const std::string &str, LL logLevel = LL::Info, bool prependDatetime = true, bool appendNewline = true);
+		void	Info(const std::string &str, bool prependDatetime = true, bool appendNewline = true);
+		void	Warn(const std::string &str, bool prependDatetime = true, bool appendNewline = true);
+		void	Debug(const std::string &str, bool prependDatetime = true, bool appendNewline = true);
 		void	Error(const std::string &message);
 		void	Flush();
 	};

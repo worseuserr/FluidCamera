@@ -10,7 +10,7 @@ namespace FluidCamera
 		std::string		Filename;
 
 	public:
-		File(const char *filename, bool replaceIfExists = false);
+		explicit	File(const char *filename, bool replaceIfExists = false);
 
 		// Returns IsOpen().
 		bool        Open(std::ios_base::openmode mode = std::ios_base::app | std::ios_base::out);
